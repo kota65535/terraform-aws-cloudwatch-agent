@@ -1,0 +1,52 @@
+{
+  "alarms": [],
+  "capacity_provider_strategy": [],
+  "cluster": "arn:aws:ecs:ap-northeast-1:561678142736:cluster/sample",
+  "deployment_circuit_breaker": [
+    {
+      "enable": true,
+      "rollback": true
+    }
+  ],
+  "deployment_controller": [
+    {
+      "type": "ECS"
+    }
+  ],
+  "deployment_maximum_percent": 200,
+  "deployment_minimum_healthy_percent": 100,
+  "desired_count": 1,
+  "enable_ecs_managed_tags": false,
+  "enable_execute_command": false,
+  "force_new_deployment": null,
+  "health_check_grace_period_seconds": 0,
+  "iam_role": "/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+  "id": "arn:aws:ecs:ap-northeast-1:561678142736:service/sample/sample-cwagent",
+  "launch_type": "FARGATE",
+  "load_balancer": [],
+  "name": "sample-cwagent",
+  "network_configuration": [
+    {
+      "assign_public_ip": false,
+      "security_groups": [
+        "sg-00c7b719903e499ea"
+      ],
+      "subnets": [
+        "subnet-0abaada26acb8894f"
+      ]
+    }
+  ],
+  "ordered_placement_strategy": [],
+  "placement_constraints": [],
+  "platform_version": "LATEST",
+  "propagate_tags": "NONE",
+  "scheduling_strategy": "REPLICA",
+  "service_connect_configuration": [],
+  "service_registries": [],
+  "tags": {},
+  "tags_all": {},
+  "task_definition": "arn:aws:ecs:ap-northeast-1:561678142736:task-definition/sample-cwagent:1",
+  "timeouts": null,
+  "triggers": {},
+  "wait_for_steady_state": false
+}
