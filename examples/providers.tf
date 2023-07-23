@@ -1,0 +1,18 @@
+terraform {
+  backend "s3" {
+    bucket = "terraform-backend-561678142736"
+    region = "ap-northeast-1"
+    key    = "terraform-aws-cloudwatch-agent.tfstate"
+  }
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "4.67.0"
+    }
+  }
+  required_version = "~> 1.5.0"
+}
+
+provider "aws" {
+  region = "ap-northeast-1"
+}
