@@ -30,7 +30,7 @@ variable "log_group_name" {
 variable "emf_processor_config" {
   description = <<EOT
 Embedded metric format processor configuration.
-See [here]https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-PrometheusEC2.html).
+See [here](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-PrometheusEC2.html).
 EOT
   type        = any
 }
