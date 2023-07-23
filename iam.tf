@@ -7,12 +7,12 @@ resource "aws_iam_role" "task" {
   }
 }
 
-resource "aws_iam_role_policy_attachment" "cloudwatch_agent_ssm" {
+resource "aws_iam_role_policy_attachment" "task_ssm" {
   role       = aws_iam_role.task.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess"
 }
 
-resource "aws_iam_role_policy_attachment" "cloudwatch_agent_server" {
+resource "aws_iam_role_policy_attachment" "task_server" {
   role       = aws_iam_role.task.name
   policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
 }
@@ -22,7 +22,7 @@ resource "aws_iam_role" "execution" {
   assume_role_policy = data.aws_iam_policy_document.ecs_tasks_assume_role.json
 }
 
-resource "aws_iam_role_policy_attachment" "task_execution" {
+resource "aws_iam_role_policy_attachment" "execution" {
   role       = aws_iam_role.execution.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }

@@ -28,18 +28,27 @@ variable "log_group_name" {
 }
 
 variable "emf_processor_config" {
-  description = "Embedded metric format processor configuration"
+  description = <<EOT
+Embedded metric format processor configuration.
+cf. https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-PrometheusEC2.html
+EOT
   type        = any
 }
 
 variable "additional_cwagent_config" {
-  description = "Additional cloudwatch agent config which is merged with the base config"
+  description = <<EOT
+Additional cloudwatch agent config which is merged with the base config.
+cf. https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-Configuration-File-Details.html
+EOT
   type    = any
   default = {}
 }
 
 variable "additional_prometheus_config" {
-  description = "Additional prometheus config which is merged with the base config"
+  description = <<EOT
+Additional prometheus config which is merged with the base config.
+cf. https://prometheus.io/docs/prometheus/latest/configuration/configuration/
+EOT
   type    = any
   default = {}
 }
