@@ -10,31 +10,33 @@ module "cloudwatch_agent" {
   ]
   log_group_name = "/sample/cwagent"
 
-  emf_processor_config = {
-    metric_declaration_dedup = true,
-    metric_namespace         = "Prometheus",
-    metric_declaration       = [
-      {
-        source_labels = [
-          "container_name",
+  metric_namespace = "Prometheus"
+  metric_declaration = [
+    {
+      source_labels = [
+        "container_name",
+        "action",
+        "cause"
+      ],
+      label_matcher = "^app",
+      dimensions = [
+        [
+          "ClusterName",
+          "TaskDefinitionFamily",
           "action",
           "cause"
-        ],
-        label_matcher = "^app",
-        dimensions = [
-          [
-            "ClusterName",
-            "TaskDefinitionFamily",
-            "action",
-            "cause"
-          ]
-        ],
-        metric_selectors = [
-          "jvm_gc_pause_seconds_count",
-          "jvm_gc_pause_seconds_max",
-          "jvm_gc_pause_seconds_sum"
         ]
-      }
-    ]
+      ],
+      metric_selectors = [
+        "jvm_gc_pause_seconds_count",
+        "jvm_gc_pause_seconds_max",
+        "jvm_gc_pause_seconds_sum"
+      ]
+    }
+  ]
+  metric_unit = {
+    jvm_gc_pause_seconds_count = "count",
+    jvm_gc_pause_seconds_max   = "seconds",
+    jvm_gc_pause_seconds_sum   = "seconds",
   }
 }
