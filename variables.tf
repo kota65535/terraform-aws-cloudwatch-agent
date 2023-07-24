@@ -27,28 +27,45 @@ variable "log_group_name" {
   type        = string
 }
 
-variable "emf_processor_config" {
+variable "metric_namespace" {
   description = <<EOT
-Embedded metric format processor configuration.
-See [here](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-PrometheusEC2.html).
+Metric namespace.
+See [here](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-PrometheusEC2.html) for more details.
 EOT
-  type        = any
+  type        = string
+}
+
+variable "metric_declaration" {
+  description = <<EOT
+Metric declaration.
+See [here](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-PrometheusEC2.html) for more details.
+EOT
+  type        = list(any)
+}
+
+variable "metric_unit" {
+  description = <<EOT
+Metric unit.
+See [here](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-PrometheusEC2.html) for more details.
+EOT
+  type        = map(string)
+  default     = {}
 }
 
 variable "additional_cwagent_config" {
   description = <<EOT
 Additional cloudwatch agent config which is merged with the base config.
-See [here](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-Configuration-File-Details.html).
+See [here](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-Configuration-File-Details.html) for more details.
 EOT
-  type    = any
-  default = {}
+  type        = any
+  default     = {}
 }
 
 variable "additional_prometheus_config" {
   description = <<EOT
 Additional prometheus config which is merged with the base config.
-See [here](https://prometheus.io/docs/prometheus/latest/configuration/configuration/).
+See [here](https://prometheus.io/docs/prometheus/latest/configuration/configuration/) for more details.
 EOT
-  type    = any
-  default = {}
+  type        = any
+  default     = {}
 }

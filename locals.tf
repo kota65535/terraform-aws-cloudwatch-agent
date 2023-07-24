@@ -20,7 +20,12 @@ locals {
               sd_job_name_label     = "ECS_PROMETHEUS_JOB_NAME"
             }
           },
-          emf_processor = var.emf_processor_config
+          emf_processor = {
+            metric_declaration_dedup = true,
+            metric_namespace         = var.metric_namespace
+            metric_declaration       = var.metric_declaration
+            metric_unit              = var.metric_unit
+          }
         }
       }
     }
