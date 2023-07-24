@@ -35,8 +35,8 @@ module "cloudwatch_agent" {
     }
   ]
   metric_unit = {
-    jvm_gc_pause_seconds_count = "count",
-    jvm_gc_pause_seconds_max   = "seconds",
-    jvm_gc_pause_seconds_sum   = "seconds",
+    jvm_gc_pause_seconds_count = "Count",
+    jvm_gc_pause_seconds_max   = "Seconds",
+    jvm_gc_pause_seconds_sum   = "Seconds",
   }
 }
