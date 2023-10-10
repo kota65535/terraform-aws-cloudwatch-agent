@@ -30,10 +30,11 @@ resource "aws_ecs_task_definition" "main" {
   execution_role_arn = aws_iam_role.execution.arn
   container_definitions = jsonencode([
     {
-      name      = "cwagent",
-      image     = "public.ecr.aws/cloudwatch-agent/cloudwatch-agent:${var.image_tag}",
-      essential = true,
-      cpu       = 1
+      name                   = "cwagent",
+      image                  = "public.ecr.aws/cloudwatch-agent/cloudwatch-agent:${var.image_tag}",
+      essential              = true,
+      readonlyRootFilesystem = true
+      cpu                    = 1
       environment = [
         {
           "name"  = "CW_CONFIG_CONTENT",
