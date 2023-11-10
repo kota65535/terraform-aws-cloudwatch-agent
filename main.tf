@@ -56,7 +56,17 @@ resource "aws_ecs_task_definition" "main" {
       mountPoints = [
         {
           "sourceVolume" : "config_file"
-          "containerPath" : "/opt/aws/amazon-cloudwatch-agent/etc",
+          "containerPath" : "/opt/aws/amazon-cloudwatch-agent/etc/prometheus.yaml",
+          "readOnly" : false
+        },
+        {
+          "sourceVolume" : "tmp_dir"
+          "containerPath" : "/tmp",
+          "readOnly" : false
+        },
+        {
+          "sourceVolume" : "pid_file"
+          "containerPath" : "/opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.pid",
           "readOnly" : false
         }
       ]
@@ -68,6 +78,12 @@ resource "aws_ecs_task_definition" "main" {
   memory                   = 1024
   volume {
     name = "config_file"
+  }
+  volume {
+    name = "tmp_dir"
+  }
+  volume {
+    name = "pid_file"
   }
 }
 
