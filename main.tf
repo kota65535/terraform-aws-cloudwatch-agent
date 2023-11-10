@@ -66,7 +66,7 @@ resource "aws_ecs_task_definition" "main" {
         },
         {
           "sourceVolume" : "pid_file"
-          "containerPath" : "/opt/aws/amazon-cloudwatch-agent/logs"
+          "containerPath" : "/opt/aws/amazon-cloudwatch-agent/var"
           "readOnly" : false
         }
       ]
