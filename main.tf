@@ -56,17 +56,17 @@ resource "aws_ecs_task_definition" "main" {
       mountPoints = [
         {
           "sourceVolume" : "config_file"
-          "containerPath" : "/opt/aws/amazon-cloudwatch-agent/etc",
+          "containerPath" : "/opt/aws/amazon-cloudwatch-agent/etc"
           "readOnly" : false
         },
         {
           "sourceVolume" : "tmp_dir"
-          "containerPath" : "/tmp",
+          "containerPath" : "/tmp"
           "readOnly" : false
         },
         {
           "sourceVolume" : "pid_file"
-          "containerPath" : "/opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.pid",
+          "containerPath" : "/opt/aws/amazon-cloudwatch-agent/logs"
           "readOnly" : false
         }
       ]
