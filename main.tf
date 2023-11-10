@@ -53,12 +53,22 @@ resource "aws_ecs_task_definition" "main" {
           awslogs-stream-prefix = var.ecs_cluster.name
         }
       }
+      mountPoints = [
+        {
+          "sourceVolume" : "config_file"
+          "containerPath" : "/opt/aws/amazon-cloudwatch-agent/etc",
+          "readOnly" : false
+        }
+      ]
     }
   ])
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = 512
   memory                   = 1024
+  volume {
+    name = "config_file"
+  }
 }
 
 resource "aws_cloudwatch_log_group" "main" {
