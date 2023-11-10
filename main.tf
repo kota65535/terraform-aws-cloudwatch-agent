@@ -56,7 +56,7 @@ resource "aws_ecs_task_definition" "main" {
       mountPoints = [
         {
           "sourceVolume" : "config_file"
-          "containerPath" : "/opt/aws/amazon-cloudwatch-agent/etc/prometheus.yaml",
+          "containerPath" : "/opt/aws/amazon-cloudwatch-agent/etc",
           "readOnly" : false
         },
         {
