@@ -30,10 +30,11 @@ resource "aws_ecs_task_definition" "main" {
   execution_role_arn = aws_iam_role.execution.arn
   container_definitions = jsonencode([
     {
-      name      = "cwagent",
-      image     = "public.ecr.aws/cloudwatch-agent/cloudwatch-agent:${var.image_tag}",
-      essential = true,
-      cpu       = 1
+      name                   = "cwagent",
+      image                  = "public.ecr.aws/cloudwatch-agent/cloudwatch-agent:${var.image_tag}",
+      essential              = true,
+      readonlyRootFilesystem = true
+      cpu                    = 1
       environment = [
         {
           "name"  = "CW_CONFIG_CONTENT",
@@ -52,12 +53,38 @@ resource "aws_ecs_task_definition" "main" {
           awslogs-stream-prefix = var.ecs_cluster.name
         }
       }
+      mountPoints = [
+        {
+          "sourceVolume" : "config_file"
+          "containerPath" : "/opt/aws/amazon-cloudwatch-agent/etc"
+          "readOnly" : false
+        },
+        {
+          "sourceVolume" : "tmp_dir"
+          "containerPath" : "/tmp"
+          "readOnly" : false
+        },
+        {
+          "sourceVolume" : "pid_file"
+          "containerPath" : "/opt/aws/amazon-cloudwatch-agent/var"
+          "readOnly" : false
+        }
+      ]
     }
   ])
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = 512
   memory                   = 1024
+  volume {
+    name = "config_file"
+  }
+  volume {
+    name = "tmp_dir"
+  }
+  volume {
+    name = "pid_file"
+  }
 }
 
 resource "aws_cloudwatch_log_group" "main" {
